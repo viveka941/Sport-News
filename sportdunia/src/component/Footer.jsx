@@ -65,7 +65,7 @@ export default function Footer() {
               Contact Us
             </h6>
             <p className="text-sm">
-              Email: contact@yourwebsite.com <br />
+              Email: Sportsdunia@yourwebsite.com <br />
               Phone: +123 456 7890 <br />
               Address: 123 Blog Street, City, Country
             </p>
