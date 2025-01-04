@@ -8,6 +8,7 @@ import About from "./page/About.jsx";
 import Contact from "./page/Contact.jsx";
 import Blog from "./page/Blog.jsx";
 import Service from "./page/Service.jsx";
+import { Auth0Provider } from "@auth0/auth0-react";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -20,18 +21,25 @@ const router = createBrowserRouter([
         element: <Contact />,
       },
       {
-        path:"/blog",
-        element:<Blog/>
-      },{
-        path:"/service",
-        element:<Service/>
-      }
+        path: "/blog",
+        element: <Blog />,
+      },
+      {
+        path: "/service",
+        element: <Service />,
+      },
     ],
   },
 ]);
 
 createRoot(document.getElementById("root")).render(
-  <StrictMode>
+  <Auth0Provider
+    domain="dev-2jwn86df6bp6swqx.us.auth0.com"
+    clientId="HWmRpxvnhLN1tcgJZTCoiDoLCONyKDBJ"
+    authorizationParams={{
+      redirect_uri: window.location.origin,
+    }}
+  >
     <RouterProvider router={router} />
-  </StrictMode>
+  </Auth0Provider>
 );
