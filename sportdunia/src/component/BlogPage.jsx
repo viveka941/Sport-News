@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
 import BlogCards from "./BlogCards";
 import Pagination from "./Pagination";
+import Sidebar from "./Sidebar";
 
 export default function BlogPage() {
   const [blogs, setBlogs] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const pageSize = 12; // Number of blogs per page
+  const pageSize = 18; // Number of blogs per page
 
   // Fetch blogs
   useEffect(() => {
@@ -47,13 +48,20 @@ export default function BlogPage() {
         {/* Add category filtering here if needed */}
       </div>
 
-      {/* Blog Section */}
-      <div>
-        <BlogCards blogs={currentBlogs} />
+      {/* Blog Section with Sidebar */}
+      <div className="flex flex-col lg:flex-row gap-12">
+        {/* BlogCards Section */}
+        <div className="flex-1">
+          <BlogCards blogs={currentBlogs} />
+        </div>
+        {/* Sidebar Section */}
+        <div className="w-full lg:w-1/4">
+          <Sidebar />
+        </div>
       </div>
 
       {/* Pagination Section */}
-      <div>
+      <div className="mt-8">
         <Pagination
           currentPage={currentPage}
           totalPages={totalPages}
