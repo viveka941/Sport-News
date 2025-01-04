@@ -11,6 +11,7 @@ import {
 
 export default function Navbar() {
   const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const[isModelOpen,setModelOpen]=useState(false)
 
   const navItems = [
     { path: "/", link: "Home" },
@@ -19,6 +20,14 @@ export default function Navbar() {
     { path: "/contact", link: "Contact" },
     { path: "/about", link: "About" },
   ];
+
+    //model deaitls
+    const open =()=>{
+      setModelOpen(true)
+    }
+    const close =()=>{
+      setModelOpen(false)
+    }
 
   return (
     <header className="bg-black p-4">
