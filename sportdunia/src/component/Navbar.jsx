@@ -23,21 +23,21 @@ export default function Navbar() {
     { path: "/", label: "Home" },
     { path: "/service", label: "Service" },
     { path: "/contact", label: "Contact" },
-    { path: "/about", label: "About" },
     { path: "/blog", label: "Blog" },
+    { path: "/about", label: "About" },
   ];
 
   const toggleMobileMenu = () => setMobileMenuOpen(!isMobileMenuOpen);
 
   const renderNavLinks = () =>
     navItems.map(({ path, label }) => (
-      <li key={path}>
+      <li key={path} className="my-2 md:my-0">
         <NavLink
           to={path}
           className={({ isActive }) =>
             isActive
               ? "text-orange-500 font-bold underline"
-              : "text-white hover:text-orange-500"
+              : "text-white hover:text-orange-500 transition-colors"
           }
           onClick={() => setMobileMenuOpen(false)}
         >
@@ -51,21 +51,21 @@ export default function Navbar() {
       <a
         href="/"
         aria-label="Facebook"
-        className="text-white hover:text-red-500 text-xl transition-colors"
+        className="text-white hover:text-orange-500 text-2xl transition-colors"
       >
         <AiFillFacebook />
       </a>
       <a
         href="/"
         aria-label="Dribbble"
-        className="text-white hover:text-red-500 text-xl transition-colors"
+        className="text-white hover:text-orange-500 text-2xl transition-colors"
       >
         <AiFillDribbbleCircle />
       </a>
       <a
         href="/"
         aria-label="Twitter"
-        className="text-white hover:text-red-500 text-xl transition-colors"
+        className="text-white hover:text-orange-500 text-2xl transition-colors"
       >
         <AiFillTwitterCircle />
       </a>
@@ -73,15 +73,15 @@ export default function Navbar() {
   );
 
   return (
-    <header className="bg-black p-4">
-      <nav className="flex justify-between items-center max-w-7xl mx-auto">
+    <header className="bg-black shadow-md">
+      <nav className="flex justify-between items-center max-w-7xl mx-auto p-4">
         {/* Logo */}
         <a href="/" className="text-2xl font-bold text-white">
           Sport<span className="text-orange-500">dunia</span>
         </a>
 
         {/* Desktop Navigation */}
-        <ul className="hidden md:flex gap-8">{renderNavLinks()}</ul>
+        <ul className="hidden md:flex gap-6">{renderNavLinks()}</ul>
 
         {/* Social Icons & Authentication */}
         <div className="hidden md:flex items-center gap-4">
@@ -91,7 +91,7 @@ export default function Navbar() {
               <img
                 src={user.picture}
                 alt={user.name}
-                className="w-8 h-8 rounded-full"
+                className="w-8 h-8 rounded-full border-2 border-orange-500"
               />
               <p className="text-white font-medium">{user.name}</p>
               <LogoutButton />
@@ -102,21 +102,19 @@ export default function Navbar() {
         </div>
 
         {/* Mobile Menu Toggle */}
-        <div className="md:hidden">
-          <button
-            onClick={toggleMobileMenu}
-            className="text-white text-2xl"
-            aria-label="Toggle Menu"
-          >
-            {isMobileMenuOpen ? <AiOutlineClose /> : <AiOutlineBars />}
-          </button>
-        </div>
+        <button
+          onClick={toggleMobileMenu}
+          className="md:hidden text-white text-2xl"
+          aria-label="Toggle Menu"
+        >
+          {isMobileMenuOpen ? <AiOutlineClose /> : <AiOutlineBars />}
+        </button>
       </nav>
 
       {/* Mobile Dropdown Menu */}
       {isMobileMenuOpen && (
-        <ul className="md:hidden flex flex-col mt-4 gap-2 bg-blue-700 p-4 rounded">
-          {renderNavLinks()}
+        <div className="md:hidden bg-blue-700 rounded-lg shadow-lg p-4">
+          <ul className="flex flex-col gap-4">{renderNavLinks()}</ul>
           <div className="flex justify-center mt-4 gap-4">
             {renderSocialIcons()}
           </div>
@@ -126,7 +124,7 @@ export default function Navbar() {
                 <img
                   src={user.picture}
                   alt={user.name}
-                  className="w-8 h-8 rounded-full"
+                  className="w-8 h-8 rounded-full border-2 border-orange-500"
                 />
                 <p className="text-white font-medium">{user.name}</p>
               </div>
@@ -135,7 +133,7 @@ export default function Navbar() {
               {isAuthenticated ? <LogoutButton /> : <LoginButton />}
             </button>
           </div>
-        </ul>
+        </div>
       )}
     </header>
   );
