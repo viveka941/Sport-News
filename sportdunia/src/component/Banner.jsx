@@ -4,7 +4,7 @@ import { FaArrowRight } from "react-icons/fa6";
 
 export default function Banner() {
   return (
-    <div className="px-4 py-32 bg-black mx-auto">
+    <div className="px-4 py-24 bg-black mx-auto">
       <div className="text-white text-center">
         <h1 className="text-5xl lg:text-7xl leading-snug font-bold mb-5">
           Welcome to Our Blog

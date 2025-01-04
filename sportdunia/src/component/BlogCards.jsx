@@ -40,8 +40,7 @@ export default function BlogCards({ blogs }) {
           </p>
           <p className="mt-1 text-gray-600 text-sm">
             {" "}
-            <CiCalendarDate className="inline" />
-            {formatDate(blog.publishedAt)}
+            <CiCalendarDate className="inline" />{" "} {formatDate(blog.publishedAt)}
           </p>
           <p className="mt-1 text-gray-600 text-sm">{blog.description}</p>
         </Link>
