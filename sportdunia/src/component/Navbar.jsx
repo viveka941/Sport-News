@@ -15,9 +15,9 @@ export default function Navbar() {
   const navItems = [
     { path: "/", link: "Home" },
     { path: "/blog", link: "Blog" },
+    { path: "/service", link: "Service" },
     { path: "/contact", link: "Contact" },
     { path: "/about", link: "About" },
-    { path: "/service", link: "Service" },
   ];
 
   return (
