@@ -1,26 +1,36 @@
-import React, { useEffect } from 'react'
-import { use } from 'react'
+import React, { useEffect, useState } from "react";
+import BlogCards from "./BlogCards";
 
 export default function BlogPage() {
-  const[blogs,setBlogs]=React.useState([])
-  useEffect(()=>{
-    async function fetchBlogs(){
-      const response=await fetch('https://jsonplaceholder.typicode.com/posts')
-      const data=await response.json()
-      setBlogs(data)
-     
-    }fetchBlogs();
-  },[])
+  const [blogs, setBlogs] = useState([]);
+
+  useEffect(() => {
+    async function fetchBlogs() {
+      try {
+        const response = await fetch(
+          "https://newsapi.org/v2/everything?q=tesla&from=2024-12-04&sortBy=publishedAt&apiKey=76068ab7e66447eab674c0f204102a77"
+        );
+        const data = await response.json();
+        setBlogs(data.articles || []); // Extract `articles` array or set to empty array if undefined
+      } catch (error) {
+        console.error("Error fetching blogs:", error);
+      }
+    }
+    fetchBlogs();
+  }, []);
+
   return (
     <div>
-     {/* cateegory section  */}
-     <div>Page Category</div>
+      {/* Category Section */}
+      <div>Page Category</div>
 
-      {/* blog section */}
-      <div></div>
-      
-      {/* pagination section */}
-      <div></div>
+      {/* Blog Section */}
+      <div>
+        <BlogCards blogs={blogs} />
+      </div>
+
+      {/* Pagination Section */}
+      <div>Pagination</div>
     </div>
-  )
+  );
 }
