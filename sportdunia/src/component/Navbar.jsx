@@ -21,10 +21,10 @@ export default function Navbar() {
 
   const navItems = [
     { path: "/", label: "Home" },
-    { path: "/blog", label: "Blog" },
     { path: "/service", label: "Service" },
     { path: "/contact", label: "Contact" },
     { path: "/about", label: "About" },
+    { path: "/blog", label: "Blog" },
   ];
 
   const toggleMobileMenu = () => setMobileMenuOpen(!isMobileMenuOpen);
@@ -77,7 +77,7 @@ export default function Navbar() {
       <nav className="flex justify-between items-center max-w-7xl mx-auto">
         {/* Logo */}
         <a href="/" className="text-2xl font-bold text-white">
-          Design<span className="text-orange-500">VK</span>
+          Sport<span className="text-orange-500">dunia</span>
         </a>
 
         {/* Desktop Navigation */}
