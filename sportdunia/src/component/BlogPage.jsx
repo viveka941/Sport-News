@@ -1,9 +1,13 @@
 import React, { useEffect, useState } from "react";
 import BlogCards from "./BlogCards";
+import Pagination from "./Pagination";
 
 export default function BlogPage() {
   const [blogs, setBlogs] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const pageSize = 12; // Number of blogs per page
 
+  // Fetch blogs
   useEffect(() => {
     async function fetchBlogs() {
       try {
@@ -19,18 +23,43 @@ export default function BlogPage() {
     fetchBlogs();
   }, []);
 
+  // Calculate the total number of pages
+  const totalPages = Math.ceil(blogs.length / pageSize);
+
+  // Get the current page's blogs
+  const currentBlogs = blogs.slice(
+    (currentPage - 1) * pageSize,
+    currentPage * pageSize
+  );
+
+  // Handle page change
+  const handlePageChange = (newPage) => {
+    if (newPage > 0 && newPage <= totalPages) {
+      setCurrentPage(newPage);
+    }
+  };
+
   return (
-    <div>
+    <div className="max-w-7xl mx-auto px-4 py-8">
       {/* Category Section */}
-      <div>Page Category</div>
+      <div className="mb-8 text-center">
+        <h2 className="text-3xl font-bold">Blog Categories</h2>
+        {/* Add category filtering here if needed */}
+      </div>
 
       {/* Blog Section */}
       <div>
-        <BlogCards blogs={blogs} />
+        <BlogCards blogs={currentBlogs} />
       </div>
 
       {/* Pagination Section */}
-      <div>Pagination</div>
+      <div>
+        <Pagination
+          currentPage={currentPage}
+          totalPages={totalPages}
+          handlePageChange={handlePageChange}
+        />
+      </div>
     </div>
   );
 }
